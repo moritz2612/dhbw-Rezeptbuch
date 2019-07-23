@@ -1,3 +1,17 @@
-<p>
-  recipe-overview works!
-</p>
+<div class="row">
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-card *ngFor="let recipe of items">
+      <mat-card-header>
+        <mat-card-title> {{recipe.Name}}</mat-card-title>
+        <mat-card-subtitle>Last modified: {{recipe.LastEdited | date:long}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{recipe.ImageUrl}}" style="height:160px; width:auto">
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Edit</button>
+        <button mat-raised-button color="warn">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-list>
+</div>
+
+<a routerLink="/recipe/add"><button class="btn btn-success pull-right">new recipe</button></a>

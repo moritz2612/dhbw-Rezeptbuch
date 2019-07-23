@@ -8,17 +8,22 @@ import { RecipeAddComponent } from './recipe/recipe-add/recipe-add.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './recipe/navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     RecipeAddComponent,
+    RecipeEditComponent,
     RecipeOverviewComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     AppMaterialModule,
     BrowserAnimationsModule

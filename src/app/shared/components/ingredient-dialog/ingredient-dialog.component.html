@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Zutat hinzufügen</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.ingredient.name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.ingredient.amount">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.ingredient.unit">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.ingredient">Confirm</button>
+</div>

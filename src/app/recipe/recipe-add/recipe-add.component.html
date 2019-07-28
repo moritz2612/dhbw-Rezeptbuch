@@ -1,3 +1,18 @@
-<p>
-  recipe-add works!
-</p>
+<h3>Neues Rezept hinzufügen</h3>
+<input type="file" (change)="uploadFile($event)">
+<input type="text">
+<br>
+Zutaten:
+<ol>
+
+  <button mat-raised-button (click)="openDialog()">+</button>
+  <li *ngFor="let ingredient of ingredientList">
+    <i>{{ingredient|json}}</i>
+  </li>
+
+  <p *ngIf>{{ingredient|json}}</p>
+  <img *ngIf="imageUrl" src="{{imageUrl}}">
+
+</ol>
+<br>
+Zubereitung:

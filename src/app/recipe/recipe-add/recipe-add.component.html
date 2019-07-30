@@ -1,18 +1,26 @@
 <h3>Neues Rezept hinzufügen</h3>
+
 <input type="file" (change)="uploadFile($event)">
-<input type="text">
+<br>
+<mat-form-field>
+  <input matInput placeholder="Name" [(ngModel)]="name" />
+</mat-form-field>
 <br>
 Zutaten:
 <ol>
-
-  <button mat-raised-button (click)="openDialog()">+</button>
   <li *ngFor="let ingredient of ingredientList">
-    <i>{{ingredient|json}}</i>
+    <i>{{ingredient.name}} - {{ingredient.amount}} - {{ingredient.unit}}</i>
   </li>
 
   <p *ngIf>{{ingredient|json}}</p>
   <img *ngIf="imageUrl" src="{{imageUrl}}">
-
 </ol>
+<button mat-raised-button (click)="openDialog()">+</button>
 <br>
-Zubereitung:
+
+<br>
+<mat-form-field>
+  <textarea matInput placeholder="Zubereitung" [(ngModel)]="description"></textarea>
+</mat-form-field>
+<br>
+<button mat-raised-button (click)="save()">Save</button>

@@ -11,7 +11,7 @@ export class IngredientDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<IngredientDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  onNoClick(): void {
+  onCancelClick(): void {
     this.dialogRef.close();
   }
 

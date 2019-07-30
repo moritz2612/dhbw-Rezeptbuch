@@ -4,23 +4,25 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { map, finalize } from 'rxjs/operators';
+import { IIngredient } from 'src/app/shared/models/IIngredient';
+import { RecipeService } from 'src/app/shared/services/recipe.service';
 @Component({
   selector: 'app-recipe-add',
   templateUrl: './recipe-add.component.html',
   styleUrls: ['./recipe-add.component.scss']
 })
 export class RecipeAddComponent implements OnInit {
-  formGroup = this.fb.group({
-    file: [null, Validators.required]
-  });
-
+  name: string;
   ingredient: any;
+  description: string;
   imageUrl;
-  ingredientList = [];
-  constructor(private fb: FormBuilder, public dialog: MatDialog, private storage: AngularFireStorage) { }
+  ingredientList: IIngredient[] = [];
+  // tslint:disable-next-line
+  constructor(private fb: FormBuilder, public dialog: MatDialog, private storage: AngularFireStorage, private recipeService: RecipeService) { }
 
   ngOnInit() {
   }
+
 
   uploadFile(event) {
     const file = event.target.files[0];
@@ -40,13 +42,20 @@ export class RecipeAddComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(IngredientDialogComponent, {
       width: '250px',
-      data: { ingredient: {} }
+      data: {}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.ingredient = result;
-      this.ingredientList.push(this.ingredient);
-    });
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        console.log(result);
+        if (result) {
+          this.ingredient = result;
+          this.ingredientList.push(this.ingredient);
+        }
+      });
+  }
+
+  save() {
+    this.recipeService.addRecipe();
   }
 }

@@ -7,6 +7,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { map, finalize } from 'rxjs/operators';
 import { IIngredient } from 'src/app/shared/models/IIngredient';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-recipe-add',
   templateUrl: './recipe-add.component.html',
@@ -49,24 +50,37 @@ export class RecipeAddComponent implements OnInit {
   }
 
   save() {
-    const id = Math.random().toString(36).substring(2);
-    const ref = this.storage.ref(id);
-    const task = ref.put(this.file);
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        ref.getDownloadURL().subscribe(url => {
-          this.imageUrl = url;
-          const recipe: IRecipe = {
-            Name: this.name,
-            Description: this.description,
-            ImageUrl: this.imageUrl,
-            Ingredients: this.ingredientList,
-            Created: new Date(),
-            LastEdited: new Date(),
-          };
-          this.recipeService.addRecipe(recipe);
-        });
-      })
-    ).subscribe();
+    if (this.file) {
+      const id = Math.random().toString(36).substring(2);
+      const ref = this.storage.ref(id);
+      const task = ref.put(this.file);
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          ref.getDownloadURL().subscribe(url => {
+            this.imageUrl = url;
+            const recipe: IRecipe = {
+              Name: this.name,
+              Description: this.description,
+              ImageUrl: this.imageUrl,
+              Ingredients: this.ingredientList,
+              Created: new Date(),
+              LastEdited: new Date(),
+            };
+            this.recipeService.addRecipe(recipe);
+          });
+        })
+      ).subscribe();
+    } else {
+      const recipe: IRecipe = {
+        Name: this.name,
+        Description: this.description,
+        ImageUrl: environment.recipePlaceHolderImageUrl,
+        Ingredients: this.ingredientList,
+        Created: new Date(),
+        LastEdited: new Date(),
+      };
+      this.recipeService.addRecipe(recipe);
+    }
+
   }
 }

@@ -18,6 +18,7 @@ export class RecipeAddComponent implements OnInit {
   description: string;
   imageUrl;
   ingredientList: IIngredient[] = [];
+  private file;
   // tslint:disable-next-line
   constructor(private fb: FormBuilder, public dialog: MatDialog, private storage: AngularFireStorage, private recipeService: RecipeService) { }
 
@@ -26,18 +27,9 @@ export class RecipeAddComponent implements OnInit {
 
 
   uploadFile(event) {
-    const file = event.target.files[0];
+    this.file = event.target.files[0];
 
-    const id = Math.random().toString(36).substring(2);
-    const ref = this.storage.ref(id);
-    const task = ref.put(file);
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        ref.getDownloadURL().subscribe(url => {
-          this.imageUrl = url;
-        });
-      })
-    ).subscribe();
+
   }
 
   openDialog(): void {
@@ -57,13 +49,24 @@ export class RecipeAddComponent implements OnInit {
   }
 
   save() {
-    const recipe: IRecipe = {
-      Name: this.name,
-      Description: this.description,
-      Ingredients: this.ingredientList,
-      Created: new Date(),
-      LastEdited: new Date(),
-    };
-    this.recipeService.addRecipe(recipe);
+    const id = Math.random().toString(36).substring(2);
+    const ref = this.storage.ref(id);
+    const task = ref.put(this.file);
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        ref.getDownloadURL().subscribe(url => {
+          this.imageUrl = url;
+          const recipe: IRecipe = {
+            Name: this.name,
+            Description: this.description,
+            ImageUrl: this.imageUrl,
+            Ingredients: this.ingredientList,
+            Created: new Date(),
+            LastEdited: new Date(),
+          };
+          this.recipeService.addRecipe(recipe);
+        });
+      })
+    ).subscribe();
   }
 }

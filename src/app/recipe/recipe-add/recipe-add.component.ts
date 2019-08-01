@@ -1,3 +1,4 @@
+import { IRecipe } from './../../shared/models/IRecipe';
 import { IngredientDialogComponent } from './../../shared/components/ingredient-dialog/ingredient-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -56,6 +57,13 @@ export class RecipeAddComponent implements OnInit {
   }
 
   save() {
-    this.recipeService.addRecipe();
+    const recipe: IRecipe = {
+      Name: this.name,
+      Description: this.description,
+      Ingredients: this.ingredientList,
+      Created: new Date(),
+      LastEdited: new Date(),
+    };
+    this.recipeService.addRecipe(recipe);
   }
 }

@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  recipesLocalStorageKey: 'recipes',
   firebase: {
     apiKey: 'AIzaSyCfHDQqWjf7KaLPhutuqzs56rporJsI9tY',
     authDomain: 'rezeptbuch-80e65.firebaseapp.com',

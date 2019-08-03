@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment.prod';
   providedIn: 'root'
 })
 export class RecipeService {
+
   constructor() { }
 
   getAll(): IRecipe[] {
@@ -23,5 +24,29 @@ export class RecipeService {
     const recipes = this.getAll();
     recipes.push(newRecipe);
     localStorage.setItem(environment.recipesLocalStorageKey, JSON.stringify(recipes));
+  }
+
+  update(recipe: IRecipe) {
+    recipe.LastEdited = new Date();
+    const recipes: IRecipe[] = this.getAll();
+    const index: number = this.getIndex(recipes, recipe);
+    recipes[index] = recipe;
+    localStorage.setItem(environment.recipesLocalStorageKey, JSON.stringify(recipes));
+  }
+
+  delete(recipe: IRecipe) {
+    const recipes: IRecipe[] = this.getAll();
+    const index: number = recipes.findIndex(r => r.Id === recipe.Id);
+    recipes.splice(index, 1);
+    localStorage.setItem(environment.recipesLocalStorageKey, JSON.stringify(recipes));
+    return recipes;
+  }
+
+  getIndex(recipes: IRecipe[], item: IRecipe) {
+    return recipes.findIndex(r => r.Id === item.Id);
+  }
+
+  getById(allRecipes: IRecipe[], id: string) {
+    return allRecipes.filter(r => r.Id === id)[0];
   }
 }

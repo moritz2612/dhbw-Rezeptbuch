@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipeOverviewComponent } from './recipe/recipe-overview/recipe-overview.component';
 import { RecipeAddComponent } from './recipe/recipe-add/recipe-add.component';
+import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.component';
 
 const routes: Routes = [
   { path: 'recipes', component: RecipeOverviewComponent },
-  { path: 'recipe/edit/:recipeId', component: RecipeEditComponent },
+  { path: 'recipe/edit/:id', component: RecipeEditComponent },
+  { path: 'recipe/view/:id', component: RecipeDetailsComponent },
   { path: 'recipe/add', component: RecipeAddComponent },
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   { path: '**', component: RecipeOverviewComponent }

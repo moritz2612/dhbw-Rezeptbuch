@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   recipesLocalStorageKey: 'recipes',
-  recipePlaceHolderImageUrl: 'https://via.placeholder.com/350x150',
+  recipePlaceHolderImageUrl: 'https://via.placeholder.com/150x150',
   firebase: {
     apiKey: 'AIzaSyCfHDQqWjf7KaLPhutuqzs56rporJsI9tY',
     authDomain: 'rezeptbuch-80e65.firebaseapp.com',

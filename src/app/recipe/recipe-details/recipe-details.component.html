@@ -1,3 +1,16 @@
-<p>
-  recipe-details works!
-</p>
+<h3>Rezept {{recipe.Name}}</h3>
+<img *ngIf="recipe.ImageUrl" src="{{recipe.ImageUrl}}"><br>
+<img *ngIf="!recipe.ImageUrl" mat-card-image src="{{recipePlaceHolderImageUrl}}" style="height:160px; width:auto"><br>
+<br>
+Zutaten:
+<ol>
+  <li *ngFor="let ingredient of recipe.Ingredients;let i = index">
+    <i>{{ingredient.Name}} - {{ingredient.Amount}} {{ingredient.Unit}}</i>
+  </li>
+</ol>
+<br>
+
+Zubereitung:
+<label placeholder="Zubereitung">{{recipe.Description}}</label>
+<br>
+<button [routerLink]="['/recipes']" mat-raised-button >Back</button>

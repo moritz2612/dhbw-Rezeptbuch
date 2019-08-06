@@ -9,12 +9,13 @@ import { AppComponent } from './app.component';
 import { RecipeAddComponent } from './recipe/recipe-add/recipe-add.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './recipe/navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { AngularFireModule } from '@angular/fire';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.c
     RecipeDetailsComponent,
     RecipeAddComponent,
     RecipeEditComponent,
-    RecipeOverviewComponent
+    RecipeOverviewComponent,
+    ShoppingListComponent
   ],
   imports: [
     BrowserModule,

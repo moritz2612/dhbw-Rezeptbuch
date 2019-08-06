@@ -26,4 +26,8 @@ export class RecipeDetailsComponent implements OnInit {
       this.recipe = this.recipeService.getById(allRecipes, id);
     });
   }
+
+  addToShoppingList() {
+
+  }
 }

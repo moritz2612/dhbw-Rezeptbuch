@@ -26,10 +26,15 @@ export class RecipeEditComponent implements OnInit {
   ngOnInit() {
     // get id from url through observable
     this.route.params.subscribe(params => {
-      const id: string = params['id'];
+      const recipeIdParam = 'id';
+      const id: string = params[recipeIdParam];
       const all = this.recipeService.getAll();
       this.recipe = this.recipeService.getById(all, id);
     });
+  }
+
+  addToShoppingList() {
+
   }
 
   uploadFile(event) {

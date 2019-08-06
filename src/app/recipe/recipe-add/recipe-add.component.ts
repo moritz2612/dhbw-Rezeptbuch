@@ -33,6 +33,10 @@ export class RecipeAddComponent implements OnInit {
 
   }
 
+  addToShoppingList() {
+
+  }
+
   uploadFile(event) {
     this.file = event.target.files[0];
   }

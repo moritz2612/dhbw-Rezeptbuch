@@ -11,12 +11,12 @@
 Zutaten:
 <ol>
   <li *ngFor="let ingredient of recipe.Ingredients;let i = index">
-      <i>{{ingredient.Name}} - {{ingredient.Amount}} {{ingredient.Unit}}
-          <button mat-raised-button (click)="removeIngredient(i)" style="font-size:12px" color="warn">-</button>
-        </i>  </li>
+    <i>{{ingredient.Name}} - {{ingredient.Amount}} {{ingredient.Unit}}
+      <button mat-raised-button (click)="removeIngredient(i)" style="font-size:12px" color="warn">-</button>
+    </i> </li>
 </ol>
 <button mat-raised-button (click)="openDialog()">+</button>
-<button mat-raised-button>zur Einkaufsliste hinzufügen</button>
+<button mat-raised-button (click)="addToShoppingList()">zur Einkaufsliste hinzufügen</button>
 <br>
 
 <br>

@@ -43,6 +43,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   uploadFile(event) {
+    // set flag that user cannot save until the file is uploaded
     this.isUploading = true;
     const file = event.target.files[0];
     const id = Math.random().toString(36).substring(2);
@@ -52,7 +53,9 @@ export class RecipeEditComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => {
         ref.getDownloadURL().subscribe(url => {
+          // set imageUrl
           this.recipe.ImageUrl = url;
+          // set isUploading flag back to false, user is now able to save
           this.isUploading = false;
         });
       })).subscribe();

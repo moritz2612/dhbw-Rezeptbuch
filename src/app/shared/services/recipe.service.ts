@@ -27,6 +27,7 @@ export class RecipeService {
   }
 
   update(recipe: IRecipe) {
+    // update LastEdited
     recipe.LastEdited = new Date();
     const recipes: IRecipe[] = this.getAll();
     const index: number = this.getIndex(recipes, recipe);
@@ -50,6 +51,7 @@ export class RecipeService {
     return allRecipes.filter(r => r.Id === id)[0];
   }
 
+  // set default recipes on startup if no recipes found
   addDefaultRecipes() {
     localStorage.setItem(environment.recipesLocalStorageKey, JSON.stringify(environment.defaultRecipes));
   }

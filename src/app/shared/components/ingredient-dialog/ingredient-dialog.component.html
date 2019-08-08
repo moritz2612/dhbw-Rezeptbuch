@@ -22,5 +22,6 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancelClick()">Cancel</button>
+  <!--on mat dialog close, confirm and send the data back to the component where it got called-->
   <button mat-button [mat-dialog-close]="data">Confirm</button>
 </div>

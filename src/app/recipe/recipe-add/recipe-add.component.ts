@@ -34,6 +34,7 @@ export class RecipeAddComponent implements OnInit {
   }
 
   uploadFile(event) {
+    // set field
     this.file = event.target.files[0];
   }
 
@@ -51,14 +52,17 @@ export class RecipeAddComponent implements OnInit {
 
     dialogRef.afterClosed()
       .subscribe(result => {
+        // check if result is not empty
         if (result) {
           this.ingredient = result;
+          // add to list
           this.ingredientList.push(this.ingredient);
         }
       });
   }
 
   cancel() {
+    // naviate back to recipes
     this.router.navigate(['/recipes']);
   }
 

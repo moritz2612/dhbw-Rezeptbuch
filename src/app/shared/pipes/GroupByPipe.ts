@@ -3,14 +3,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'groupBy' })
 export class GroupByPipe implements PipeTransform {
     transform(collection: any, property: string): any {
+        // check if valid collection
         if (!collection) {
             return null;
         }
 
         const groupedCollection = collection.reduce((previous, current) => {
+            // check if exists
             if (!previous[current[property]]) {
                 previous[current[property]] = [current];
             } else {
+                // push cause already exists
                 previous[current[property]].push(current);
             }
 

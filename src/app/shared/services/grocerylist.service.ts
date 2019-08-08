@@ -9,11 +9,14 @@ export class GrocerylistService {
   constructor() { }
 
   getAll(): IIngredient[] {
+    // get JSON from localStorage
     const groceryListJSON: string = localStorage.getItem(environment.groceryListLocalStorageKey);
     let groceryList: IIngredient[] = [];
     if (groceryListJSON) {
+      // parse
       groceryList = JSON.parse(groceryListJSON);
     } else {
+      // nothing found, init new list
       groceryList = [];
     }
     return groceryList;

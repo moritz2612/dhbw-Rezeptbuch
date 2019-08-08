@@ -35,7 +35,9 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   addToShoppingList() {
+    // check if empty or undefined
     if (this.recipe.Ingredients && this.recipe.Ingredients.length > 0) {
+      // add to shopping cart
       this.grocerylistService.addIngredientToShoppingList(this.recipe.Ingredients);
       this.snackBar.open(`Added ingredients of ${this.recipe.Name}`, '', { duration: 2500 });
     }

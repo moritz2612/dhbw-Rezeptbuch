@@ -14,14 +14,17 @@ export class Helper {
     const result = [];
     allItems.reduce((res, value) => {
       if (!res[value.Name]) {
+        // set values
         res[value.Name] = {
           Name: value.Name,
           Amount: 0,
           Unit: value.Unit,
           Category: value.Category
         };
+        // push
         result.push(res[value.Name]);
       }
+      // sum amount
       res[value.Name].Amount += parseInt(value.Amount, 10);
       return res;
     }, {});

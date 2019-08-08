@@ -8,10 +8,18 @@ Zutaten:
     <i>{{ingredient.Name}} - {{ingredient.Amount}} {{ingredient.Unit}}</i>
   </li>
 </ol>
-<button mat-raised-button (click)="addToShoppingList()">zur Einkaufsliste hinzufügen</button>
+<br>
+<button mat-raised-button (click)="addToShoppingList()">
+  <mat-icon>add_shopping_cart</mat-icon>
+</button>
+<br>
 <br>
 
 Zubereitung:
 <label placeholder="Zubereitung">{{recipe.Description}}</label>
 <br>
-<button [routerLink]="['/recipes']" mat-raised-button >Back</button>
+
+<button [routerLink]="['/recipes']" mat-raised-button>Back</button>
+
+<button [routerLink]="['/recipe/edit', recipe.Id]" mat-raised-button color="primary">Edit</button>
+<button [routerLink]="['/recipes']" mat-raised-button color="warn" (click)="delete(recipe)">Delete</button>

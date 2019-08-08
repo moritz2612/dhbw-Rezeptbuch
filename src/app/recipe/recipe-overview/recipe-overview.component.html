@@ -13,8 +13,9 @@
           src="{{recipePlaceHolderImageUrl}}" style="height:160px; width:auto">
       </a>
       <mat-card-actions>
-        <button [routerLink]="['/recipe/edit', recipe.Id]" mat-raised-button color="primary">Edit</button>
-        <button mat-raised-button color="warn" (click)="delete(recipe)">Delete</button>
+        <button mat-raised-button (click)="addToShoppingList(recipe)">
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-list>

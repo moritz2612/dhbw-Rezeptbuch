@@ -1,6 +1,6 @@
 export interface IIngredient {
     Name: string;
-    Amount: number;
+    Amount: string;
     Unit: string;
     Category?: string;
 }

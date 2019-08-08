@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   recipesLocalStorageKey: 'recipes',
+  groceryListLocalStorageKey: 'groceryList',
   recipePlaceHolderImageUrl: 'https://via.placeholder.com/150x150',
   firebase: {
     apiKey: 'AIzaSyCfHDQqWjf7KaLPhutuqzs56rporJsI9tY',

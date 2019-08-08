@@ -1,5 +1,7 @@
+import { MatSnackBar } from '@angular/material';
+import { GrocerylistService } from './../../shared/services/grocerylist.service';
 import { IRecipe } from './../../shared/models/IRecipe';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { environment } from 'src/environments/environment';
@@ -12,7 +14,8 @@ import { environment } from 'src/environments/environment';
 export class RecipeDetailsComponent implements OnInit {
   recipePlaceHolderImageUrl: string;
   recipe: IRecipe;
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService) {
+  // tslint:disable
+  constructor(private snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute, private grocerylistService: GrocerylistService, private recipeService: RecipeService) {
     this.recipePlaceHolderImageUrl = environment.recipePlaceHolderImageUrl;
   }
 
@@ -24,10 +27,20 @@ export class RecipeDetailsComponent implements OnInit {
       const allRecipes: IRecipe[] = this.recipeService.getAll();
       // get recipe
       this.recipe = this.recipeService.getById(allRecipes, id);
+      if (!this.recipe) {
+        this.router.navigate(['recipes']);
+        this.snackBar.open(`Konnte Rezept mit Id: ${id} nicht finden`, '', { duration: 2000 });
+      }
     });
   }
 
   addToShoppingList() {
+    this.grocerylistService.addIngredientToShoppingList(this.recipe.Ingredients);
+    this.snackBar.open(`Added ingredients of ${this.recipe.Name}`, '', { duration: 2500 });
+  }
 
+  delete(recipe: IRecipe) {
+    this.recipeService.delete(recipe);
+    this.snackBar.open(recipe.Name, 'successfully deleted', { duration: 2500 });
   }
 }

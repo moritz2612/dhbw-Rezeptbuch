@@ -1,3 +1,9 @@
-<p>
-  shopping-list works!
-</p>
+<div *ngFor="let object of items | groupBy:'Category'">
+  <h4>{{object.key}}</h4>
+  <div *ngFor="let values of object.value">
+    <p>{{values.Amount}} {{values.Unit}} {{values.Name}}</p>
+  </div>
+</div>
+<button mat-raised-button (click)="addNewItem()">
+  <mat-icon>add_shopping_cart</mat-icon>
+</button>

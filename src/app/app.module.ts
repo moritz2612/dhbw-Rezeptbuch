@@ -16,6 +16,7 @@ import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component'
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { GroupByPipe } from './shared/pipes/GroupByPipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
     RecipeAddComponent,
     RecipeEditComponent,
     RecipeOverviewComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    GroupByPipe,
   ],
   imports: [
     BrowserModule,

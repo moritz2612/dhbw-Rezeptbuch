@@ -1,13 +1,23 @@
 <h1 mat-dialog-title>Zutat hinzufügen</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Name" [(ngModel)]="data.Name"/>
+    <input matInput placeholder="Name" [(ngModel)]="data.Name" />
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Amount"  [(ngModel)]="data.Amount"/>
+    <input matInput min="1" type="number" placeholder="Amount" [(ngModel)]="data.Amount" />
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Einheit"  [(ngModel)]="data.Unit"/>
+    <input matInput placeholder="Einheit" [(ngModel)]="data.Unit" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Kategorie</mat-label>
+    <select matNativeControl [(ngModel)]="data.Category" name="category">
+      <option value="" selected></option>
+      <option value="Obst">Obst</option>
+      <option value="Gemüse">Gemüse</option>
+      <option value="Fleisch">Fleisch</option>
+      <option value="Sonstiges">Sonstiges</option>
+    </select>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

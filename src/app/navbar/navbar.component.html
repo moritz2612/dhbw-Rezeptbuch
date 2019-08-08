@@ -1,5 +1,9 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>DHBW Rezeptliste</span>
+    <span style="flex:1 1 auto"> </span>
+    <span [routerLink]="['/list']">
+      <mat-icon style="cursor:pointer">shopping_cart</mat-icon>
+    </span>
   </mat-toolbar-row>
 </mat-toolbar>

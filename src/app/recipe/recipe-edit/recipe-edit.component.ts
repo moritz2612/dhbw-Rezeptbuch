@@ -1,3 +1,4 @@
+import { GrocerylistService } from './../../shared/services/grocerylist.service';
 import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { IngredientDialogComponent } from './../../shared/components/ingredient-dialog/ingredient-dialog.component';
@@ -18,10 +19,14 @@ export class RecipeEditComponent implements OnInit {
   recipePlaceHolderImageUrl: string;
   recipe: IRecipe;
   isUploading = false;
-  // tslint:disable-next-line
-  constructor(private dialog: MatDialog, private storage: AngularFireStorage, private snackBar: MatSnackBar, private location: Location, private route: ActivatedRoute, private recipeService: RecipeService, private router: Router) {
+  // tslint:disable
+  constructor(private dialog: MatDialog,
+    private storage: AngularFireStorage, private snackBar: MatSnackBar,
+    private location: Location, private route: ActivatedRoute,
+    private recipeService: RecipeService, private router: Router) {
     this.recipePlaceHolderImageUrl = environment.recipePlaceHolderImageUrl;
   }
+  // tslint:enable
 
   ngOnInit() {
     // get id from url through observable
@@ -30,11 +35,11 @@ export class RecipeEditComponent implements OnInit {
       const id: string = params[recipeIdParam];
       const all = this.recipeService.getAll();
       this.recipe = this.recipeService.getById(all, id);
+      if (!this.recipe) {
+        this.router.navigate(['recipes']);
+        this.snackBar.open(`Konnte Rezept mit Id: ${id} nicht finden`, '', { duration: 2000 });
+      }
     });
-  }
-
-  addToShoppingList() {
-
   }
 
   uploadFile(event) {
@@ -44,11 +49,9 @@ export class RecipeEditComponent implements OnInit {
     const ref = this.storage.ref(id);
     const task = ref.put(file);
 
-    console.log(task);
     task.snapshotChanges().pipe(
       finalize(() => {
         ref.getDownloadURL().subscribe(url => {
-          console.log(url);
           this.recipe.ImageUrl = url;
           this.isUploading = false;
         });

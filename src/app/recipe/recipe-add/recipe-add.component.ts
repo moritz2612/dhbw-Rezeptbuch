@@ -25,15 +25,11 @@ export class RecipeAddComponent implements OnInit {
   private file;
   recipePlaceHolderImageUrl: string;
   // tslint:disable-next-line
-  constructor(private location: Location, private router: Router, private snackBar: MatSnackBar, private fb: FormBuilder, public dialog: MatDialog, private storage: AngularFireStorage, private recipeService: RecipeService) {
+  constructor(private location: Location, private router: Router, private snackBar: MatSnackBar, public dialog: MatDialog, private storage: AngularFireStorage, private recipeService: RecipeService) {
     this.recipePlaceHolderImageUrl = environment.recipePlaceHolderImageUrl;
   }
 
   ngOnInit() {
-
-  }
-
-  addToShoppingList() {
 
   }
 
@@ -86,6 +82,10 @@ export class RecipeAddComponent implements OnInit {
               LastEdited: new Date(),
             };
             this.recipeService.addRecipe(recipe);
+            // show snackbar
+            this.snackBar.open('Recipe', 'successfully saved', { duration: 2500 });
+            // navigate back to recipes
+            this.router.navigate(['/recipes']);
           });
         })
       ).subscribe();
@@ -99,10 +99,10 @@ export class RecipeAddComponent implements OnInit {
         LastEdited: new Date(),
       };
       this.recipeService.addRecipe(recipe);
+      // show snackbar
+      this.snackBar.open('Recipe', 'successfully saved', { duration: 2500 });
+      // navigate back to recipes
+      this.router.navigate(['/recipes']);
     }
-    // show snackbar
-    this.snackBar.open('Recipe', 'successfully saved', { duration: 2500 });
-    // navigate back to recipes
-    this.router.navigate(['/recipes']);
   }
 }

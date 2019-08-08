@@ -31,7 +31,8 @@ export class ShoppingListComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(result => {
         if (result) {
-          var list = [];
+          // work around
+          const list: any[] = [];
           list.push(result);
           this.groceryListService.addIngredientToShoppingList(list);
           const allItems = this.groceryListService.getAll();

@@ -1,5 +1,5 @@
 <div class="row">
-  <mat-card style="border:1px solid red;padding:30px" *ngFor="let recipe of items">
+  <mat-card class="recipe-card" *ngFor="let recipe of items">
     <mat-card-header>
       <mat-card-title style="cursor:pointer" [routerLink]="['/recipe/view', recipe.Id]">{{recipe.Name}}
       </mat-card-title>

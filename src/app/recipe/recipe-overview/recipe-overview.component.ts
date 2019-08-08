@@ -25,6 +25,7 @@ export class RecipeOverviewComponent implements OnInit {
   }
 
   addToShoppingList(recipe) {
+    // check if ingredients are not empty
     if (recipe.Ingredients && recipe.Ingredients.length > 0) {
       this.grocerylistService.addIngredientToShoppingList(recipe.Ingredients);
       this.snackBar.open(`Added ingredients of ${recipe.Name}`, '', { duration: 2500 });

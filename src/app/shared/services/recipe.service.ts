@@ -49,4 +49,8 @@ export class RecipeService {
   getById(allRecipes: IRecipe[], id: string) {
     return allRecipes.filter(r => r.Id === id)[0];
   }
+
+  addDefaultRecipes() {
+    localStorage.setItem(environment.recipesLocalStorageKey, JSON.stringify(environment.defaultRecipes));
+  }
 }

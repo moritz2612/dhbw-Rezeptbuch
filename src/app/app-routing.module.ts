@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'recipe/edit/:id', component: RecipeEditComponent },
   { path: 'recipe/view/:id', component: RecipeDetailsComponent },
   { path: 'recipe/add', component: RecipeAddComponent },
-  { path: '', redirectTo: '/404', pathMatch: 'full' },
+  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   { path: '404', component: PageNotFoundComponent }
 ];

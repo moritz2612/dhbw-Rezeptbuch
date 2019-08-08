@@ -21,9 +21,7 @@ export class GrocerylistService {
 
   addIngredientToShoppingList(ingredients: IIngredient[]) {
     const items = this.getAll();
-    ingredients.forEach(i => {
-      items.push(i);
-    });
+    ingredients.forEach(i => { items.push(i); });
     localStorage.setItem(environment.groceryListLocalStorageKey, JSON.stringify(items));
   }
 }

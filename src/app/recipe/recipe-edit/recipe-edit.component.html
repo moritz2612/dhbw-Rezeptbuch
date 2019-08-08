@@ -2,7 +2,7 @@
 
 <input type="file" (change)="uploadFile($event)">
 <br>
-<img *ngIf="recipe.ImageUrl" src="{{recipe.ImageUrl}}"><br>
+<img *ngIf="recipe.ImageUrl" src="{{recipe.ImageUrl}}" style="height:150px; width:auto"><br>
 <img *ngIf="!recipe.ImageUrl" src="{{recipePlaceHolderImageUrl}}"><br>
 <mat-form-field>
   <input matInput placeholder="Name" [(ngModel)]="recipe.Name" />

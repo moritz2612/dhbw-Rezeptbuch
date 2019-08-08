@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { environment } from './../environments/environment';
 import { IngredientDialogComponent } from './shared/components/ingredient-dialog/ingredient-dialog.component';
 import { AppMaterialModule } from './app-material.module';
@@ -27,6 +28,7 @@ import { GroupByPipe } from './shared/pipes/GroupByPipe';
     RecipeAddComponent,
     RecipeEditComponent,
     RecipeOverviewComponent,
+    PageNotFoundComponent,
     ShoppingListComponent,
     GroupByPipe,
   ],

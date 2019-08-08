@@ -23,9 +23,11 @@ export class RecipeOverviewComponent implements OnInit {
   ngOnInit() {
     this.items = this.recipeService.getAll();
   }
-  
+
   addToShoppingList(recipe) {
-    this.grocerylistService.addIngredientToShoppingList(recipe.Ingredients);
-    this.snackBar.open(`Added ingredients of ${recipe.Name}`, '', { duration: 2500 });
+    if (recipe.Ingredients && recipe.Ingredients.length > 0) {
+      this.grocerylistService.addIngredientToShoppingList(recipe.Ingredients);
+      this.snackBar.open(`Added ingredients of ${recipe.Name}`, '', { duration: 2500 });
+    }
   }
 }

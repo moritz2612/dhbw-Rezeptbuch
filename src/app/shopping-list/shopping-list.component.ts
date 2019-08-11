@@ -13,7 +13,6 @@ import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 })
 export class ShoppingListComponent implements OnInit {
   items: IIngredient[];
-  objectKeys = Object.keys;
   constructor(private groceryListService: GrocerylistService, public dialog: MatDialog) { }
 
   ngOnInit() {

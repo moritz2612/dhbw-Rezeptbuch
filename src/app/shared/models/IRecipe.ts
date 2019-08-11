@@ -1,4 +1,3 @@
-import { IGroceryList } from './IGroceryList';
 import { IIngredient } from './IIngredient';
 
 export interface IRecipe {
